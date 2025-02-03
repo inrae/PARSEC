@@ -1,0 +1,38 @@
+# Fonction pour la correction des effets de lot et de cohorte
+batch_cohort_correction <- function(data, batch_col, sample_col, intensity_cols) {
+  
+  # Chargement des bibliothèques nécessaires
+  if (!requireNamespace("dplyr", quietly = TRUE)) install.packages("dplyr")
+  if (!requireNamespace("lme4", quietly = TRUE)) install.packages("lme4")
+  library(dplyr)
+  library(lme4)
+  
+  # Étape 1 : Log-transformation des intensités
+  data <- data %>%
+    mutate(across(all_of(intensity_cols), log1p))  # log1p(x) = log(1 + x) pour éviter log(0)
+  
+  # Étape 2 : Standardisation batch-wise
+  for (col in intensity_cols) {
+    data <- data %>%
+      group_by(!!sym(batch_col)) %>%
+      mutate(!!sym(col) := scale(!!sym(col), center = TRUE, scale = TRUE)) %>%
+      ungroup()
+  }
+  
+  # Étape 3 : Modèle mixte pour corriger l'effet de cohorte et l'ordre d'injection
+  for (col in intensity_cols) {
+    formula <- as.formula(paste(col, "~ Injection_Order + (1|", batch_col, ")"))
+    
+    # Ajustement du modèle mixte
+    model <- lmer(formula, data = data, REML = TRUE)
+    
+    # Extraction des résidus corrigés
+    data[[col]] <- residuals(model)
+  }
+  
+  # Étape 4 : Exponentiation inverse pour revenir aux intensités corrigées
+  data <- data %>%
+    mutate(across(all_of(intensity_cols), expm1))  # expm1(x) = exp(x) - 1 pour inverser log1p
+  
+  return(data)
+}
