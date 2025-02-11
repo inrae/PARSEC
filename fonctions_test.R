@@ -1,3 +1,5 @@
+
+
 # Fonction pour la correction des effets de lot et de cohorte
 batch_cohort_correction <- function(data, batch_col, sample_col, intensity_cols) {
     # Chargement des bibliothèques nécessaires
@@ -46,3 +48,11 @@ intensity_cols <- c("Ion1", "Ion2")
 result <- batch_cohort_correction(data_set, "Batch", "SampleID", intensity_cols)
 
 print(result)
+
+args <- commandArgs(TRUE)
+cat("Les commande passés en ligne de commande sont:\n")
+cat(args);cat("\n")
+filename<-args[1]
+func_name<-args[2]
+attr_index<-args[3]
+
