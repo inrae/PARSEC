@@ -51,7 +51,7 @@ batch_cohort_correction <- function(data, batch_col, sample_col, intensity_cols,
   data <- data %>%
     mutate(across(all_of(intensity_cols), expm1))  # expm1(x) = exp(x) - 1
 
-  ### 📊 Visualisation des effets de lot avant/après ###
+  ### Visualisation des effets de lot avant/après ###
   
   col_to_plot <- intensity_cols[1]  # Sélectionner une colonne pour la visualisation
   
@@ -67,7 +67,7 @@ batch_cohort_correction <- function(data, batch_col, sample_col, intensity_cols,
     theme_minimal() +
     ggtitle("Après correction")
   
-  output_dir <- "C:/Users/sgouiriloem/Documents/Salomon/PARSEC/parsec-algo-250102588/"
+  output_dir <- "lien/ver/repertoire" # Path du repretoire pour stocker l'image en sortie
   dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)  # Crée le dossier s'il n'existe pas
   output_file <- file.path(output_dir, "output.png")
 
