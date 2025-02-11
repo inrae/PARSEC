@@ -49,10 +49,3 @@ result <- batch_cohort_correction(data_set, "Batch", "SampleID", intensity_cols)
 
 print(result)
 
-args <- commandArgs(TRUE)
-cat("Les commande passés en ligne de commande sont:\n")
-cat(args);cat("\n")
-filename<-args[1]
-func_name<-args[2]
-attr_index<-args[3]
-
