@@ -1,20 +1,13 @@
 # r-lint-disable
 
-batch_cohort_correction <- function(data, batch_col, sample_col, intensity_cols, output_file = "correction_plot.png") {
-  
-  # Chargement des bibliothèques nécessaires
-  options(repos = c(CRAN = "https://cran.r-project.org"))  # Définit le miroir CRAN
-  
-  required_packages <- c("dplyr", "lme4", "ggplot2", "patchwork")
-  installed_packages <- rownames(installed.packages())
-  for (pkg in required_packages) {
-    if (!(pkg %in% installed_packages)) install.packages(pkg, dependencies = TRUE)
-  }
+# Charger les bibliothèques nécessaires
+library(optparse)
+library(dplyr)
+library(lme4)
+library(ggplot2)
+library(patchwork)
 
-  library(dplyr)
-  library(lme4)
-  library(ggplot2)
-  library(patchwork)  # Pour combiner plusieurs plots
+batch_cohort_correction <- function(data, batch_col, sample_col, intensity_cols, output_file) {
   
   # Vérifier si les colonnes existent dans les données
   missing_cols <- setdiff(c(batch_col, sample_col, intensity_cols), colnames(data))
@@ -67,40 +60,51 @@ batch_cohort_correction <- function(data, batch_col, sample_col, intensity_cols,
     theme_minimal() +
     ggtitle("Après correction")
   
-  output_dir <- "lien/ver/repertoire" # Path du repretoire pour stocker l'image en sortie
+  output_dir <- "img/"  # Répertoire de sortie
   dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)  # Crée le dossier s'il n'existe pas
-  output_file <- file.path(output_dir, "output.png")
+  
+  output_path <- file.path(output_dir, output_file)
 
   # Sauvegarde du graphique
-  ggsave(output_file, plot = (p1 + p2), width = 10, height = 5)
+  ggsave(output_path, plot = (p1 + p2), width = 10, height = 5)
+
+  cat("✅ Image sauvegardée :", output_path, "\n")
 
   return(data)
 }
 
 ### Gestion des arguments de la ligne de commande ###
-args <- commandArgs(TRUE)
 
-if (length(args) < 2) {
-  stop("Usage : Rscript script.R <fichier_csv> <fichier_png>")
+# Définition des options
+option_list <- list(
+  make_option(c("-i", "--input"), type = "character", default = "data.csv", help = "Fichier de données pour traitement", metavar = "FILE"),
+  make_option(c("-o", "--output"), type = "character", default = "figure.png", help = "Fichier d'image de sortie", metavar = "FILE")
+)
+
+# Création du parser
+opt_parser <- OptionParser(option_list = option_list)
+opt <- parse_args(opt_parser)
+
+# Vérification que le fichier d'entrée existe
+if (!file.exists(opt$input)) {
+  stop(paste("❌ Erreur : Le fichier", opt$input, "n'existe pas."))
 }
 
-filename <- args[1]  # Nom du fichier CSV
-file_png <- args[2]  # Nom du fichier de sortie pour la visualisation
-
 # Charger les données
-data_set <- read.csv(filename, header = TRUE, sep = ",")
+data_set <- read.csv(opt$input, header = TRUE, sep = ",")
 
 # Vérifier les colonnes nécessaires
 required_columns <- c("Batch", "SampleID", "Ion1", "Ion2", "Injection_Order")
 missing_columns <- setdiff(required_columns, colnames(data_set))
 
 if (length(missing_columns) > 0) {
-  stop(paste("Erreur : Les colonnes suivantes sont manquantes dans le fichier CSV :", paste(missing_columns, collapse = ", ")))
+  stop(paste("❌ Erreur : Les colonnes suivantes sont manquantes dans le fichier CSV :", paste(missing_columns, collapse = ", ")))
 }
 
 # Colonnes d'intensité
 intensity_cols <- c("Ion1", "Ion2")
 
 # Appliquer la correction
-corrected_data <- batch_cohort_correction(data_set, "Batch", "SampleID", intensity_cols, file_png)
+corrected_data <- batch_cohort_correction(data_set, "Batch", "SampleID", intensity_cols, opt$output)
 
+cat("✅ Traitement terminé avec succès !\n")
