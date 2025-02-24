@@ -53,26 +53,29 @@ batch_cohort_correction <- function(data, batch_col, sample_col, intensity_cols,
 
   ### Visualization of before/after batch effects ###
 
-  col_to_plot <- intensity_cols[1]  # Select first column for visualization
+  # col_to_plot <- intensity_cols[1]  # Select first column for visualization
 
   # Before correction
-  p1 <- ggplot(data_raw, aes(x = !!sym(batch_col), y = !!sym(col_to_plot), fill = !!sym(batch_col))) + geom_boxplot(alpha = 0.7) + theme_minimal() + ggtitle("Before correction") # nolint
+  # p1 <- ggplot(data_raw, aes(x = !!sym(batch_col), y = !!sym(col_to_plot), fill = !!sym(batch_col))) + geom_boxplot(alpha = 0.7) + theme_minimal() + ggtitle("Before correction") + labs(x = "Batch_col", y = "Intensity Ion1") # nolint
 
   # After correction
-  p2 <- ggplot(data, aes(x = !!sym(batch_col), y = !!sym(col_to_plot), fill = !!sym(batch_col))) + geom_boxplot(alpha = 0.7) + theme_minimal() + ggtitle("After correction") # nolint
+  # p2 <- ggplot(data, aes(x = !!sym(batch_col), y = !!sym(col_to_plot), fill = !!sym(batch_col))) + geom_boxplot(alpha = 0.7) + theme_minimal() + ggtitle("After correction") # nolint
 
   # Output directory
-  output_dir <- "img/"
+  output_dir <- "data_process/"
 
   # Create folder if it doesn't exist
   dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
   output_path <- file.path(output_dir, output_file)
 
   # Save graphic
-  ggsave(output_path, plot = (p1 + p2), width = 10, height = 5)
+  # ggsave(output_path, plot = (p1 + p2), width = 10, height = 5) #nolint
 
   cat("✅ Image sauvegardée :", output_path, "\n")
-
+  write.csv(data, output_path, row.names = FALSE)
+  cat(
+    "LE dataframe modifié a été enregistrer avec les entête dans le repertoir dataprocess" #nolint
+  )
   return(data)
 }
 
@@ -90,8 +93,8 @@ option_list <- list(
   make_option(
     c("-o", "--output"),
     type = "character",
-    default = "figure.png",
-    help = "Output image file",
+    default = "data_proces.csv",
+    help = "Output data file",
     metavar = "FILE"
   )
 )
@@ -130,5 +133,5 @@ corrected_data <- batch_cohort_correction(
   intensity_cols,
   opt$output
 )
-
+print(corrected_data)
 cat("✅ Processing completed successfully !\n")

@@ -106,16 +106,15 @@ If you are new to R, here are some useful resources to help you get started:
 
 ## Usage
 ### To test the program :
-        Rscript ./executable_func.R -i data_test.csv -o img_ouput.png
-
-- data_test.csv : represents the file of data that will be processeded by the program
-- img_ouput.png : represents the visualization file of the data processed by program in comparison with the origin data.
+        Rscript ./executable_func.R -i data_test.csv -o data_ouput.csv
 
 ### the options :
 
 - `--input` or `-i` for the dataset
-- `--ouput` or `-o` for the visualization file
+- `--ouput` or `-o` for the modified data file
 
+- data_test.csv : represents the file of data that will be processeded by the program
+- data_ouput.csv : represents the the modified data file of the data processed by program in comparison with the origin data.
 ## Support
 Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
