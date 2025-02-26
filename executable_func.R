@@ -133,5 +133,7 @@ corrected_data <- batch_cohort_correction(
   intensity_cols,
   opt$output
 )
-print(corrected_data)
-cat("✅ Processing completed successfully !\n")
+
+# check data ouput
+# print(corrected_data) #nolint
+# cat("✅ Processing completed successfully !\n")  #nolint
