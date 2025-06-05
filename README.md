@@ -82,4 +82,3 @@ A fictitious example of a dataset to be tested:
 | 2 | 1 | 15 | 520 | 310 |
 | 3 | 2 | 25 | 490 | 290 |
 | 4 | 2 | 35 | 505 | 295 |
-
