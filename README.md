@@ -46,7 +46,7 @@ install.packages(c("dplyr", "lme4", "ggplot2", "patchwork", "optparse"))
 To run the algorithm from terminal:
 
 ```bash
-Rscript ./executable_func.R -i data_test.csv -o data_output.csv
+Rscript ./parsec.R -i data_test.csv -o data_output.csv
 ```
 
 ### Command-line Arguments
