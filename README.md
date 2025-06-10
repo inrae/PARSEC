@@ -94,6 +94,7 @@ Returns corrected intensities to original scale.
 - Marie Lefebvre : marie.lefebvre@inrae.fr
 
 ## Citation
+```json
 @softwareversion{swh-dir-f166076,
     author = "Salanon, Elfried  and Comte, Blandine  and Boccard, Julien  and Pujos-Guillot, Estelle ",
     organization = "Université Clermont Auvergne, INRAE, UNH, Plateforme d’Exploration du Métabolisme, MetaboHUB Clermont, Clermont-Ferrand, France and School of Pharmaceutical Sciences, University of Geneva, Geneva, Switzerland",
@@ -108,3 +109,4 @@ Returns corrected intensities to original scale.
     version = "1.0.0",
     swhid = "swh:1:dir:f16607641d45c7ae90571e847660d9040ca5723f;origin=https://github.com/inrae/PARSEC;visit=swh:1:snp:6ead07484c3aa11bdecba951b42a5d037e1cbf0c;anchor=swh:1:rev:51c7d9c1e08354ffcccb208e3f355a4cd6a9d60b"
 }
+```
