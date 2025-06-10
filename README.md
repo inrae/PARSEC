@@ -92,3 +92,19 @@ Returns corrected intensities to original scale.
 ## 👥 Developer contact
 - Elfried Salanon : magneficat.salanon@gmail.com
 - Marie Lefebvre : marie.lefebvre@inrae.fr
+
+## Citation
+@softwareversion{swh-dir-f166076,
+    author = "Salanon, Elfried  and Comte, Blandine  and Boccard, Julien  and Pujos-Guillot, Estelle ",
+    organization = "Université Clermont Auvergne, INRAE, UNH, Plateforme d’Exploration du Métabolisme, MetaboHUB Clermont, Clermont-Ferrand, France and School of Pharmaceutical Sciences, University of Geneva, Geneva, Switzerland",
+    license = "CC-BY-NC-4.0",
+    abstract = "This algorithm performs batch effect and cohort effect correction on intensity data using a statistical modeling approach based on linear mixed models (LMM). This tool is especially suited for omics or high-throughput datasets, where batch or injection order can introduce unwanted variability.",
+    date = "2025-06-13",
+    year = "2025",
+    month = jun,
+    file = "https://github.com/inrae/PARSEC",
+    repository = "https://github.com/inrae/PARSEC",
+    title = "PARSEC",
+    version = "1.0.0",
+    swhid = "swh:1:dir:f16607641d45c7ae90571e847660d9040ca5723f;origin=https://github.com/inrae/PARSEC;visit=swh:1:snp:6ead07484c3aa11bdecba951b42a5d037e1cbf0c;anchor=swh:1:rev:51c7d9c1e08354ffcccb208e3f355a4cd6a9d60b"
+}
