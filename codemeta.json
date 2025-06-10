@@ -1,0 +1,89 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "type": "SoftwareSourceCode",
+    "author": [
+        {
+            "id": "https://orcid.org/0009-0007-7560-2144",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Université Clermont Auvergne, INRAE, UNH, Plateforme d’Exploration du Métabolisme, MetaboHUB Clermont, Clermont-Ferrand, France"
+            },
+            "email": "elfried.salanon@inrae.fr",
+            "familyName": "Salanon",
+            "givenName": "Elfried "
+        },
+        {
+            "type": "schema:Role",
+            "schema:author": "https://orcid.org/0009-0007-7560-2144",
+            "schema:roleName": "Developper"
+        },
+        {
+            "id": "https://orcid.org/0000-0002-4662-6581",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Université Clermont Auvergne, INRAE, UNH, Plateforme d’Exploration du Métabolisme, MetaboHUB Clermont, Clermont-Ferrand, France"
+            },
+            "email": "blandine.comte@inrae.fr",
+            "familyName": "Comte",
+            "givenName": "Blandine "
+        },
+        {
+            "id": "https://orcid.org/0000-0001-5913-9566",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "School of Pharmaceutical Sciences, University of Geneva, Geneva, Switzerland"
+            },
+            "email": "julien.boccard@unige.ch",
+            "familyName": "Boccard",
+            "givenName": "Julien "
+        },
+        {
+            "id": "https://orcid.org/0000-0002-4693-5712",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Université Clermont Auvergne, INRAE, UNH, Plateforme d’Exploration du Métabolisme, MetaboHUB Clermont, Clermont-Ferrand, France"
+            },
+            "email": "estelle.pujos-guillot@inrae.fr",
+            "familyName": "Pujos-Guillot",
+            "givenName": "Estelle "
+        }
+    ],
+    "codeRepository": "https://github.com/inrae/PARSEC",
+    "contributor": [
+        {
+            "id": "https://orcid.org/0000-0002-3093-5873",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Université Clermont Auvergne, INRAE, UNH, Plateforme d’Exploration du Métabolisme, MetaboHUB Clermont, Clermont-Ferrand, France"
+            },
+            "email": "marie.lefebvre@inrae.fr",
+            "familyName": "Lefebvre",
+            "givenName": "Marie"
+        },
+        {
+            "id": "_:contributor_2",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Université Clermont Auvergne, INRAE, UNH, Plateforme d’Exploration du Métabolisme, MetaboHUB Clermont, Clermont-Ferrand, France"
+            },
+            "familyName": "Gouiri loembe",
+            "givenName": "Salomon"
+        }
+    ],
+    "dateCreated": "2025-01-01",
+    "dateModified": "2025-06-13",
+    "datePublished": "2025-06-13",
+    "description": "This algorithm performs batch effect and cohort effect correction on intensity data using a statistical modeling approach based on linear mixed models (LMM). This tool is especially suited for omics or high-throughput datasets, where batch or injection order can introduce unwanted variability.",
+    "downloadUrl": "https://github.com/inrae/PARSEC",
+    "keywords": "metabolomics; quality control; statistics;batch effect;large-scale;study effect",
+    "license": "https://spdx.org/licenses/CC-BY-NC-4.0",
+    "name": "PARSEC",
+    "programmingLanguage": "R",
+    "version": "1.0.0"
+}
